@@ -742,4 +742,16 @@ master（192.168.195.100），node1（192.168.195.101），node2（192.168.195.1
                      number: 8848
    ```
 
-   
+
+## 配置HTTPS
+
+参考https://cloud.google.com/kubernetes-engine/docs/how-to/ingress-multi-ssl?hl=zh-cn#which_certificate_is_presented
+
+遇到问题：无限重定向导致浏览器报错：重定向次数过多
+
+解决方法：ingress.yaml配置文件添加配置
+
+```
+annotations:
+  nginx.ingress.kubernetes.io/force-ssl-redirect: 'true'
+```
