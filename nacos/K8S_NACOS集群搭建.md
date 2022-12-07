@@ -742,21 +742,20 @@ master（192.168.195.100），node1（192.168.195.101），node2（192.168.195.1
                      number: 8848
    ```
 
+## 为什么不使用HTTPS
 
-## 配置HTTPS
+1. 因为https意味着大部分场景需要放置到公网，nacos也明确表示配置文件应该是内部系统不应该暴露到公网。
 
-参考https://cloud.google.com/kubernetes-engine/docs/how-to/ingress-multi-ssl?hl=zh-cn#which_certificate_is_presented（我选用的）
+2. 自身实验配置https后，遇到问题：无限重定向导致浏览器报错：重定向次数过多，原因是因为使用`/nacos`而不是`/nacos/`，nacos服务会将`/nacos`302重定向到`/nacos/`,但是再配置了https后：
 
-或者https://www.niewx.cn/2022/04/08/nginx-ingress-configuration-https-two-way-authentication/
+   1. 会将路径重定向到HTTP协议 路径为`/nacos/`，这是正常转发，因为nginx会将https转为http访问。
+   2. 但是配置了证书，所以http会308永久重定向到HTTPS`/nacos`
 
-遇到问题：无限重定向导致浏览器报错：重定向次数过多
+   此处导致1，2两步循环，使浏览器报错。如果nacos服务端能够接收/nacos路径，应该会解决第二个问题。
 
-解决方法：ingress.yaml配置文件添加配置，用https来进行访问
 
-```
-annotations:
-  nginx.ingress.kubernetes.io/force-ssl-redirect: 'true'
-```
 
-原因：提示“重定向次数过多”，一般是因为将HTTP链接强制跳转为HTTPS链接，然鹅，在防火墙上却只配置了一条HTTPS（对外协议）到HTTP（源站协议）的转发，防火墙强行将用户的请求进行跳转到更安全的https，所以造成死循环。来自：https://blog.csdn.net/AlvinCasper/article/details/112727903
+
+
+
 
