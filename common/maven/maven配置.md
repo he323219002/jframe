@@ -4,11 +4,18 @@
 
 ### server标签
 
+ 这是server的id（注意不是用户登陆的id），该id与distributionManagement中repository元素的id相匹配。
+
 ```
 <settings>
   <servers>
     <server>
-      <id>my-server</id>
+      <id>release</id>
+      <username>myusername</username>
+      <password>mypassword</password>
+    </server>
+    <server>
+      <id>snapshot</id>
       <username>myusername</username>
       <password>mypassword</password>
     </server>
@@ -46,6 +53,7 @@
   ```
   <distributionManagement>
     <repository>
+      <!-- 和settings文件中一致>
       <id>my-repo</id>
       <name>My Repository</name>
       <url>http://myrepo.com/repository</url>
@@ -78,6 +86,53 @@
 - Q:如果不配置profiles maven可以正常打包吗?
 
   A:如果不配置profiles，maven仍然可以正常打包。在没有配置profiles的情况下，maven会使用默认的配置信息来打包项目。例如，maven会使用默认的本地存储库和远程存储库，并使用默认的构建插件来打包项目。
+  
+- Q: 如何进行多环境配置
+
+  A:Maven 的 settings.xml 文件可以用来配置不同的运行环境，并切换不同的配置选项。要配置多个运行环境，你需要在 settings.xml 文件中定义一组运行环境，然后使用 `-D` 选项指定要使用的运行环境。例如：
+
+  ```
+  <!-- settings.xml -->
+  <profiles>
+    <profile>
+      <id>development</id>
+      <properties>
+        <env>development</env>
+      </properties>
+    </profile>
+    <profile>
+      <id>production</id>
+      <properties>
+        <env>production</env>
+      </properties>
+    </profile>
+  </profiles>
+  ```
+
+  ```
+  # 执行 Maven 命令时指定运行环境
+  mvn clean package -Denv=development
+  ```
+
+  在你的 POM 文件中，你可以通过 `${env}` 来引用当前的运行环境。例如：
+
+  ```
+  <!-- pom.xml -->
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.2.0</version>
+        <configuration>
+          <finalName>my-project-${env}</finalName>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  ```
+
+  当你执行 `mvn clean package -Denv=development` 时，Maven 会使用 `my-project-development` 作为最终生成的 jar 包的名称。
 
 ### 我的配置
 
