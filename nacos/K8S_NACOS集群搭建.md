@@ -753,9 +753,11 @@ master（192.168.195.100），node1（192.168.195.101），node2（192.168.195.1
 
    此处导致1，2两步循环，使浏览器报错。如果nacos服务端能够接收/nacos路径，应该会解决第二个问题。
 
+## k8s nacos集群 grpc通信问题
 
+问题描述：我在项目中使用ingress代理的接口时候，因为只有域名，默认只会找8848这个端口，但是在nacos 2.0中，grpc通信的接口默认是8848+1000，这一层在ingress中无法实现，导致报错。
 
-
+在github：k8s-nacos中遇到同样的issue：[k8s部署Nacos2.x](https://github.com/nacos-group/nacos-k8s/issues/291)
 
 
 
