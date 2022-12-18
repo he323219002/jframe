@@ -1,14 +1,18 @@
 
 spring:
-  config:
-    activate:
-      on-profile: dev
+
   application:
     name: jframe_config
   cloud:
     nacos:
+      discovery:
+        server-addr: 192.168.195.100:30848
+        username: jimmy
+        password: home
+        namespace: c7028d41-b98c-4c9b-88e3-fd8caa98cbb1
+        group: JFRAME_GROUP
       config:
-        server-addr: nacos.jframe.com
+        server-addr: 192.168.195.100:30848
         file-extension: yaml
         username: jimmy
         password: home

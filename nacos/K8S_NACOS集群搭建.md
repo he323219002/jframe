@@ -759,5 +759,55 @@ master（192.168.195.100），node1（192.168.195.101），node2（192.168.195.1
 
 在github：k8s-nacos中遇到同样的issue：[k8s部署Nacos2.x](https://github.com/nacos-group/nacos-k8s/issues/291)
 
+### 问题解决
 
+1. 将暴露nacos的ingress删除，改用nodeport，将8848，9848，9849分别暴露出去。下面是我的nodeport配置
+
+   ```yaml
+   apiVersion: v1
+   kind: Service
+   metadata:
+     name: nacos-node-port
+     namespace: nacos
+     labels:
+       app: nacos
+   spec:
+     selector:
+       app: nacos
+     externalTrafficPolicy: Cluster
+     ports:
+       - name: nacos-service-0
+         targetPort: 8848
+         nodePort: 30848 
+         port: 8848
+         protocol: TCP
+       - port: 7848
+         name: rpc
+         targetPort: 7848
+         nodePort: 30212
+       - port: 9848
+         name: client
+         targetPort: 9848 
+         nodePort: 31848 # 一定要比8848的nodeport+1000
+       - port: 9849
+         name: server
+         targetPort: 9849
+         nodePort: 31849 # 一定要比8848的nodeport+1000
+     type: NodePort
+   
+   ```
+
+2. 將項目中的bootstrap server addr修改
+
+   ```yaml
+   spring:
+     cloud:
+       nacos:
+         discovery:
+           server-addr: 192.168.195.100:30848
+         config:
+           server-addr: 192.168.195.100:30848
+   ```
+
+   
 
