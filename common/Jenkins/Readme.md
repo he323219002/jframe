@@ -4,6 +4,8 @@
 
 ### 遇到的问题
 
+#### 安装
+
 按照官网教程，一直无法正常启动，本身环境为java 11，报错openjdk8无效
 
 ```
@@ -40,7 +42,15 @@ jenkins启动
 #service jenkins stop
 ```
 
+#### github流水线建立
 
+创建github流水线的时候，设置了凭据，但是一直失败。报错
+
+```
+stderr: fatal: TCP connection reset by peer
+```
+
+下载了一个插件 blue ocean解决了此问题，参考文档：https://blog.51cto.com/zq2599/5768354
 
 ## CI/CD 
 
