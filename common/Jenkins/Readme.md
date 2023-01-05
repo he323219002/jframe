@@ -1,3 +1,7 @@
+---
+typora-root-url: ..\..\pic
+---
+
 ## 安装
 
 我安装的是最新版的jenkins，环境要求java11 + 
@@ -69,9 +73,9 @@ stderr: fatal: TCP connection reset by peer
 2. 在远程目标服务器的`~/.ssh`目录下新建`authorized_keys`文件，并把第一步的公钥复制进去
 3. 在jenkins界面配置如下内容，并且将私钥复制
 
-![](../../pic/微信截图_20230102194624.png)
+![](/微信截图_20230102194624.png)
 
-![](../../pic/微信截图_20230102194706.png)
+
 
 ### 流水线语法
 
@@ -121,3 +125,10 @@ pipeline {
 }
 ```
 
+### 流水线配置
+
+#### JenkinsFile
+
+将流水线语法部分的代码，复制到一个文件，命名为jenkinsFile，push到git仓库中，如果是github参见上方，github流水线建立。
+
+![{3DD9217C-6319-452D-BDF7-023C86EB48CF}](/{3DD9217C-6319-452D-BDF7-023C86EB48CF}.png)
