@@ -2,7 +2,7 @@ pipeline {
     // 指定集群中机器 
     agent any
 
-    // 存放所有任务的合集 123
+    // 存放所有任务的合集 
     stages {
         stage('pull git code') {
             steps {
