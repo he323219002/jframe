@@ -106,13 +106,13 @@
         <repository>
             <id>release</id>
             <name>releases</name>
-            <url>http://192.168.195.160:9002/nexus/repository/maven-releases/</url>
+            <url>http://192.168.195.160:8091/repository/maven-releases/</url>
             <uniqueVersion>true</uniqueVersion>
         </repository>
         <snapshotRepository>
             <id>snapshot</id>
             <name>snapshot</name>
-            <url>http://192.168.195.160:9002/nexus/repository/maven-snapshots/</url>
+            <url>http://192.168.195.160:8091/repository/maven-snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
 
