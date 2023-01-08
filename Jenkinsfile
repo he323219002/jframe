@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('pull git code') {
             steps {
-                echo '拉取Git代码-成功'
+                checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: '160ssh', url: 'http://192.168.195.160:8093/root/jframe.git']]])
             }
         }
 
