@@ -12,7 +12,6 @@ pipeline {
 
         stage('maven build') {
             steps {
-                echo $(java -version)
                 sh '''cd Jframe
                 /usr/local/apache-maven-3.8.6/bin/mvn clean package -DskipTests'''
             }
