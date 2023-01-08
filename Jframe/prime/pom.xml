@@ -31,6 +31,7 @@
                 <configuration>
                     <source>16</source>
                     <target>16</target>
+                    <skip>true</skip>
                 </configuration>
             </plugin>
         </plugins>
