@@ -12,7 +12,8 @@ pipeline {
 
         stage('maven build') {
             steps {
-                echo 'maven构建项目-成功'
+                sh '''cd Jframe
+                mvn clean package -DskipTests'''
             }
         }
 
