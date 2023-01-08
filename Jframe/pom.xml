@@ -14,10 +14,10 @@
     <name>Jframe</name>
     <description>Jframe</description>
 
-    <modules>
-        <module>basic</module>
-        <module>prime</module>
-    </modules>
+<!--    <modules>-->
+<!--        <module>basic</module>-->
+<!--        <module>prime</module>-->
+<!--    </modules>-->
 
 
     <properties>
