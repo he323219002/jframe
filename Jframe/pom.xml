@@ -107,6 +107,6 @@
         </snapshotRepository>
     </distributionManagement>
 
-    <packaging>pom</packaging>
+    <packaging>jar</packaging>
 
 </project>
