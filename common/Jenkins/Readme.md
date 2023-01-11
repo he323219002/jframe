@@ -48,6 +48,8 @@ jenkins启动
 
 #### github流水线建立
 
+（国内用户强烈建议用私服的gitlab，或者gitee，gitlab会有时候出现 访问相关问题）
+
 创建github流水线的时候，设置了凭据，但是一直失败。报错
 
 ```
@@ -132,3 +134,28 @@ pipeline {
 将流水线语法部分的代码，复制到一个文件，命名为jenkinsFile，push到git仓库中，如果是github参见上方，github流水线建立。
 
 ![{3DD9217C-6319-452D-BDF7-023C86EB48CF}](/{3DD9217C-6319-452D-BDF7-023C86EB48CF}.png)
+
+#### maven打包镜像
+
+jenkinsFile流水线语法：
+
+```
+        stage('maven build') {
+            steps {
+                sh '''cd Jframe
+                echo $(java -version)
+                /usr/local/apache-maven-3.8.6/bin/mvn clean package -DskipTests'''
+            }
+        }
+```
+
+此处我遇到的问题是maven打包失败，看报错
+
+```
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.8.1:compile (default-compile) on project basic: Fatal error compiling: error: invalid target release: 17 -> [Help 1]
+```
+
+原因是配置文件中的编译版本是jdk17，但是maven运行的打包命令不支持，此处需要修改jenkins全局环境变量，指定我的jdk版本。
+
+![](/{543E940D-216A-4F7C-A2C2-0420D12C77DE}.png)
+
