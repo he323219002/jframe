@@ -159,3 +159,6 @@ jenkinsFile流水线语法：
 
 ![](/{543E940D-216A-4F7C-A2C2-0420D12C77DE}.png)
 
+#### 上传镜像到docker仓库
+
+参考文档：镜像上传Harbor  https://blog.csdn.net/weixin_37194108/article/details/106248700
