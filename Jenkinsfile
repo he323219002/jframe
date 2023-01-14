@@ -36,9 +36,15 @@ pipeline {
             }
         }
 
-        stage('notify server and deploy') {
+        stage('transfer to server') {
             steps {
                 sshPublisher(publishers: [sshPublisherDesc(configName: 'k8s-master', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: 'k8s', sourceFiles: 'k8s/jframe_pipeline.yaml')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+            }
+        }
+
+        stage('notify server to deploy') {
+            steps {
+                sh 'ssh root@192.168.195.100 kubectl apply -f  jframe_pipeline.yaml'
             }
         }
     }
