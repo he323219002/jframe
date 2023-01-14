@@ -162,3 +162,77 @@ jenkinsFile流水线语法：
 #### 上传镜像到docker仓库
 
 参考文档：镜像上传Harbor  https://blog.csdn.net/weixin_37194108/article/details/106248700
+
+#### k8s拉取镜像部署
+
+1. 准备工作：k8s集群中每台机器都需要docker login一下私服，输入账号密码就可以。
+
+2. 在集群中配置docker的secret，我用的是可视化界面kuboard操作（第三步的配置文件会用到）![](/{C871343C-FD9A-48AD-A0D6-F56E5418F8AB}.png)
+
+3. 准备配置文件
+
+   ```yaml
+   apiVersion: apps/v1
+   kind: Deployment
+   metadata:
+     namespace: jframe
+     name: jframe-dep
+     labels:
+       app: jframeL
+   spec:
+     replicas: 2
+     selector:
+       matchLabels:
+         app: jframeL
+     template:
+       metadata:
+         labels:
+           app: jframeL    
+       spec:
+         imagePullSecrets:
+         - name: harbor
+         containers:
+         - name: jframe
+           image: 192.168.195.160:8092/repo/jframe:v1.0.0
+           imagePullPolicy: Always
+           ports:
+           - containerPort: 8051
+   ---
+   apiVersion: v1
+   kind: Service
+   metadata:
+     namespace: jframe
+     labels:
+       app: jframeL
+     name: jframe-svc  
+   spec:
+     selector:
+       app: jframeL
+     ports:
+     - port: 8081
+       targetPort: 8051
+   
+     type: NodePort
+   ---
+   apiVersion: networking.k8s.io/v1
+   kind: Ingress
+   metadata:
+     namespace: jframe
+     name: jframe-ing 
+   spec:
+     ingressClassName: ingress
+     rules:
+     - host: jimmy.jframe.com
+       http:
+         paths:
+         - path: /
+           pathType: Prefix
+           backend:
+             service:
+               name: jframe-svc
+               port:
+                 number: 8081
+   ```
+
+   
+

@@ -809,5 +809,9 @@ master（192.168.195.100），node1（192.168.195.101），node2（192.168.195.1
            server-addr: 192.168.195.100:30848
    ```
 
-   
 
+## issue
+
+### K8S-nacos集群内部启动失败
+
+https://github.com/nacos-group/nacos-k8s/issues/386
