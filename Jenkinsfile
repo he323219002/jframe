@@ -30,7 +30,7 @@ pipeline {
             steps {
                 sh '''cd Jframe
                     cd basic
-                    docker build -t {JOB_NAME}:v1.0.0 .
+                    docker build -t ${JOB_NAME}:v1.0.0 .
                     '''
             }
         }
