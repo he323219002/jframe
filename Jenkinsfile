@@ -13,20 +13,16 @@ pipeline {
         stage('maven build') {
             steps {
                 sh '''cd Jframe
-                echo $(java -version)
                 /usr/local/apache-maven-3.8.6/bin/mvn clean package -DskipTests'''
-            }
-        }
-
-        stage('code detection') {
-            steps {
-                echo '检测代码质量-成功'
             }
         }
 
         stage('build docker image') {
             steps {
-                echo '构建自定义镜像-成功'
+                sh '''cd Jframe
+                    cd basic
+                    docker build -t jframe:v1.0.0 .
+                    '''
             }
         }
 
