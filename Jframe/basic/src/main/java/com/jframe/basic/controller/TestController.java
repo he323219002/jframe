@@ -20,4 +20,10 @@ public class TestController {
         log.info("app:{}",app);
         return app;
     }
+
+    @GetMapping("/post")
+    public String getConfig2(){
+
+        return "test post";
+    }
 }

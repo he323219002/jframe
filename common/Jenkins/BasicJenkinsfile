@@ -8,7 +8,6 @@ pipeline {
         harborPasswd = 'Home_12345'
         harborAddress = '192.168.195.160:8092'
         harborRepo = 'repo'
-        iamgeNmae = 'jframebasic'
     }
 
     // 存放所有任务的合集 1
@@ -45,13 +44,13 @@ pipeline {
 
         stage('transfer to server') {
             steps {
-                sshPublisher(publishers: [sshPublisherDesc(configName: 'k8s-master', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: 'k8s', sourceFiles: 'k8s/jframe_pipeline.yaml')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+                sshPublisher(publishers: [sshPublisherDesc(configName: 'k8s-master', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: 'k8s', sourceFiles: 'k8s/jframe_basic_pipeline.yaml')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
             }
         }
 
         stage('notify server to deploy') {
             steps {
-                sh 'ssh root@192.168.195.100 kubectl apply -f  /usr/local/jenkins/jframe_pipeline.yaml'
+                sh 'ssh root@192.168.195.100 kubectl apply -f  /usr/local/jenkins/jframe_basic_pipeline.yaml'
             }
         }
     }
