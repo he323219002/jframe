@@ -19,7 +19,7 @@ spec:
       - name: harbor
       containers:
       - name: jframe
-        image: 192.168.195.160:8092/repo/jframe:v1.0.0
+        image: 192.168.195.160:8092/repo/jframe_basic:v1.0.0
         imagePullPolicy: Always
         ports:
         - containerPort: 8051
