@@ -2,6 +2,14 @@ pipeline {
     // 指定集群中机器 
     agent any
 
+    // 声明全局变量，方便后面使用
+    environment {
+        harborUser = 'develop'
+        harborPasswd = 'Home_12345'
+        harborAddress = '192.168.195.160:8092'
+        harborRepo = 'repo'
+    }
+
     // 存放所有任务的合集 1
     stages {
         stage('pull git code') {
@@ -28,7 +36,9 @@ pipeline {
 
         stage('push image to Harbor') {
             steps {
-                echo '镜像发布到发布Harbor-成功'
+                sh '''docker login -u ${harborUser} -p ${harborPasswd} ${harborAddress}
+                docker tag ${JOB_NAME}:v1.0.0  ${harborAddress}/${harborRepo}/${JOB_NAME}:v1.0.0
+                docker push ${harborAddress}/${harborRepo}/${JOB_NAME}:v1.0.0 '''
             }
         }
 
@@ -40,7 +50,7 @@ pipeline {
 
         stage('notify server to deploy') {
             steps {
-                sh 'ssh root@192.168.195.100 kubectl apply -f  jframe_pipeline.yaml'
+                sh 'ssh root@192.168.195.100 kubectl apply -f  /usr/local/jenkins/jframe_pipeline.yaml'
             }
         }
     }
