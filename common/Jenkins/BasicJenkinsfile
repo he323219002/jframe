@@ -10,7 +10,7 @@ pipeline {
         harborRepo = 'repo'
     }
 
-    // 存放所有任务的合集 1
+    // 存放所有任务的合集 
     stages {
         stage('pull git code') {
             steps {

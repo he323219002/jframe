@@ -163,13 +163,42 @@ jenkinsFile流水线语法：
 
 参考文档：镜像上传Harbor  https://blog.csdn.net/weixin_37194108/article/details/106248700
 
-#### k8s拉取镜像部署
+jenkins脚本语法，换成自己的配置就可以了
 
-1. 准备工作：k8s集群中每台机器都需要docker login一下私服，输入账号密码就可以。
+```groovy
+pipeline {
+	    // 声明全局变量，方便后面使用
+    environment {
+        harborUser = 'develop'
+        harborPasswd = 'Home_12345'
+        harborAddress = '192.168.195.160:8092'
+        harborRepo = 'repo'
+    }
+    ....
+    stage('push image to Harbor') {
+            steps {
+                sh '''docker login -u ${harborUser} -p ${harborPasswd} ${harborAddress}
+                docker tag ${JOB_NAME}:v1.0.0  ${harborAddress}/${harborRepo}/${JOB_NAME}:v1.0.0
+                docker push ${harborAddress}/${harborRepo}/${JOB_NAME}:v1.0.0 '''
+            }
+    }
+    .....
+}
+```
 
-2. 在集群中配置docker的secret，我用的是可视化界面kuboard操作（第三步的配置文件会用到）![](/{C871343C-FD9A-48AD-A0D6-F56E5418F8AB}.png)
+此步可能会碰到docker运行权限的问题
 
-3. 准备配置文件
+```
+报错信息 Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock:&target=&ulimits=null&version=1": dial unix /var/run/docker.sock: connect: permission denied
+```
+
+解决方法：https://blog.csdn.net/qq_26878363/article/details/110479644
+
+#### 传递k8s配置文件给目标服务器
+
+1. 在jenkins系统配置中配置k8s集群中master的信息![](/ssh_server配置.png)
+
+2. 准备配置文件，我放在k8s文件夹下jframe_basic_pipeline.yaml
 
    ```yaml
    apiVersion: apps/v1
@@ -193,7 +222,7 @@ jenkinsFile流水线语法：
          - name: harbor
          containers:
          - name: jframe
-           image: 192.168.195.160:8092/repo/jframe:v1.0.0
+           image: 192.168.195.160:8092/repo/jframe_basic:v1.0.0
            imagePullPolicy: Always
            ports:
            - containerPort: 8051
@@ -234,5 +263,33 @@ jenkinsFile流水线语法：
                  number: 8081
    ```
 
-   
+3. 检查在你第一步配置的文件夹路径中是否有第二步的yaml配置文件
 
+#### k8s拉取镜像部署
+
+1. 准备工作：k8s集群中每台机器都需要docker login一下私服，输入账号密码就可以。
+
+2. 在集群中配置docker的secret，我用的是可视化界面kuboard操作（第三步的配置文件会用到）![](/{C871343C-FD9A-48AD-A0D6-F56E5418F8AB}.png)
+
+3. 配置jenkins流水线语法
+
+   ```
+           stage('notify server to deploy') {
+               steps {
+                   sh 'ssh root@192.168.195.100 kubectl apply -f  /usr/local/jenkins/jframe_basic_pipeline.yaml'
+               }
+           }
+   ```
+
+   此处要先配置免密登录
+
+   1. 在jenkins服务器生成公钥私钥 （私钥不要配置密码！，如果已经设置密码要置空：https://blog.csdn.net/qq_37210523/article/details/104675587）
+   2. 在目标服务器~/.ssh 目录下建里authorized_keys文件，将第一步生成的公钥复制进去
+
+   此步可能出现权限问题：
+
+   ```
+   jenkins Host key verification failed 
+   ```
+
+   是因为jenkins用户的操作权限不足，解决方法：https://www.jb51.net/article/173605.htm

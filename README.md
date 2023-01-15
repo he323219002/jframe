@@ -1,3 +1,7 @@
+---
+typora-root-url: pic
+---
+
 # jframe
 
 ## 简介 
@@ -6,10 +10,17 @@
 
 ## 基本架构
 
-![基本架构](pic/image-20221204195521623.png)
+![](/image-20221204195521623.png)
 
 ## K8S
 
 1. 具体参见k8s项目包
 2. 部署项目 nacos
 
+## JENKINS CI
+
+实现思路如下：
+
+![](/jenkinsCI.png)
+
+实现步骤详情见common/jenkins下文档
