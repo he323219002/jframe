@@ -8,6 +8,7 @@ pipeline {
         harborPasswd = 'Home_12345'
         harborAddress = '192.168.195.160:8092'
         harborRepo = 'repo'
+        iamgeNmae = 'jframebasic'
     }
 
     // 存放所有任务的合集 1
@@ -29,7 +30,7 @@ pipeline {
             steps {
                 sh '''cd Jframe
                     cd basic
-                    docker build -t jframe:v1.0.0 .
+                    docker build -t {JOB_NAME}:v1.0.0 .
                     '''
             }
         }
