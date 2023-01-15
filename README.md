@@ -1,7 +1,3 @@
----
-typora-root-url: pic
----
-
 # jframe
 
 ## 简介 
@@ -10,7 +6,7 @@ typora-root-url: pic
 
 ## 基本架构
 
-![](/image-20221204195521623.png)
+![](pic/image-20221204195521623.png)
 
 ## K8S
 
@@ -19,8 +15,8 @@ typora-root-url: pic
 
 ## JENKINS CI
 
-实现思路如下：
+实现思路如下
 
-![](/jenkinsCI.png)
+![](pic/jenkinsCI.png)
 
 实现步骤详情见common/jenkins下文档
