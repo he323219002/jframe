@@ -8,13 +8,56 @@
         <version>0.0.1-SNAPSHOT</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <artifactId>basic</artifactId>
+    <groupId>com.jframe.basic</groupId>
+    <artifactId>jframe-basic-parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
     <name>basic</name>
-    <description>basic</description>
     <properties>
         <java.version>17</java.version>
     </properties>
+
+    <modules>
+        <module>jframe-basic-client</module>
+        <module>jframe-basic-adapter</module>
+        <module>jframe-basic-app</module>
+        <module>jframe-basic-domain</module>
+        <module>jframe-basic-infrastructure</module>
+        <module>start</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <!--Project modules-->
+            <dependency>
+                <groupId>com.jframe.basic</groupId>
+                <artifactId>jframe-basic-adapter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.jframe.basic</groupId>
+                <artifactId>jframe-basic-client</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.jframe.basic</groupId>
+                <artifactId>jframe-basic-app</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.jframe.basic</groupId>
+                <artifactId>jframe-basic-domain</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.jframe.basic</groupId>
+                <artifactId>jframe-basic-infrastructure</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <!--Project modules End-->
+        </dependencies>
+    </dependencyManagement>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
