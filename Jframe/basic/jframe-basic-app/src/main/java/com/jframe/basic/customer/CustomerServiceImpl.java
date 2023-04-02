@@ -2,7 +2,6 @@ package com.jframe.basic.customer;
 
 import com.alibaba.cola.dto.MultiResponse;
 import com.alibaba.cola.dto.Response;
-import com.alibaba.cola.catchlog.CatchAndLog;
 import com.jframe.basic.api.CustomerServiceI;
 import com.jframe.basic.dto.CustomerAddCmd;
 import com.jframe.basic.dto.CustomerListByNameQry;
@@ -17,7 +16,6 @@ import javax.annotation.Resource;
 
 
 @Service
-@CatchAndLog
 public class CustomerServiceImpl implements CustomerServiceI {
 
     @Resource
