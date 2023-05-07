@@ -1,9 +1,14 @@
 package com.jframe.basic.acc.api;
 
+
 /**
- * @Author: Jimmy He
- * @Date: 2023/4/5 19:04
- * @Description: TODO 描述
+ * <p>
+ * 账号 服务类
+ * </p>
+ *
+ * @author jimmy
+ * @since 2023-04-27
  */
-public interface AccountService {
+public interface AccountService{
+
 }

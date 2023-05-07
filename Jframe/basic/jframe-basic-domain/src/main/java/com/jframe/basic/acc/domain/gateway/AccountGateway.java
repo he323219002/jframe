@@ -1,4 +1,4 @@
-package com.jframe.basic.domain.acc.gateway;
+package com.jframe.basic.acc.domain.gateway;
 
 /**
  * @Author: Jimmy He

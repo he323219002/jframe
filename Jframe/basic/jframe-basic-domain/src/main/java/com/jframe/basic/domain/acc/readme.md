@@ -1,1 +1,0 @@
-这里放gateway接口，entity，充血模型扩展

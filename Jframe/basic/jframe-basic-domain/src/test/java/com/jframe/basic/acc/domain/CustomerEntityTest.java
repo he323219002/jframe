@@ -1,4 +1,4 @@
-package com.jframe.basic.domain;
+package com.jframe.basic.acc.domain;
 
 
 public class CustomerEntityTest {
