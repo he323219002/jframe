@@ -125,8 +125,8 @@ alter table acc_third_party_account
 
 
 alter table xxx
-    add version        int      not null comment '版本号',
-    add deleted        tinyint  not null comment '逻辑删除',
+    add version        int default 1  not null comment '版本号',
+    add deleted        tinyint default 0 not null comment '逻辑删除',
     add create_user_id bigint   not null comment '创建人id',
     add create_time    datetime not null comment '创建时间',
     add update_user_id bigint   not null comment '更新人id',

@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 
 import lombok.EqualsAndHashCode;
 import com.jframe.basic.acc.domain.enumerate.*;
+import lombok.Getter;
+import lombok.Setter;
 
 
 /**
@@ -14,6 +16,8 @@ import com.jframe.basic.acc.domain.enumerate.*;
 
 
 @EqualsAndHashCode(callSuper = false)
+@Getter
+@Setter
 public class Account extends Entity{
 
 

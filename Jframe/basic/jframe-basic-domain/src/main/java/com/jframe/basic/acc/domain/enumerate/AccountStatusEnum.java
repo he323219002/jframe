@@ -32,4 +32,14 @@ public enum AccountStatusEnum implements IEnum<Integer>{
     public Integer getValue() {
         return this.code;
     }
+
+    public static AccountStatusEnum getByCode(Integer code){
+        for (AccountStatusEnum result : AccountStatusEnum.values()) {
+            if (result.getValue().equals(code)) {
+                return result;
+            }
+        }
+        // todo 抛一场
+        return null;
+    }
 }

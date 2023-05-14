@@ -19,6 +19,7 @@ import java.time.LocalDateTime;
 
 @EqualsAndHashCode(callSuper = false)
 @Data
+@TableName(value = "acc_account")
 public class AccountDbo extends Dbo implements Serializable {
 
     @Serial
