@@ -13,15 +13,5 @@
         <maven.compiler.target>17</maven.compiler.target>
     </properties>
 
-    <dependencyManagement>
-        <dependencies>
-            <!-- MapStruct domain 映射工具 -->
-            <dependency>
-                <groupId>org.mapstruct</groupId>
-                <artifactId>mapstruct</artifactId>
-            </dependency>
-
-        </dependencies>
-    </dependencyManagement>
 
 </project>
