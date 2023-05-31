@@ -11,6 +11,7 @@
 
     <modules>
         <module>jframe-spring-boot-starter-banner</module>
+        <module>jframe-spring-boot-starter-web</module>
     </modules>
 
     <properties>

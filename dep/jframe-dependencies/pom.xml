@@ -13,6 +13,8 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <spring.boot.version>2.7.2</spring.boot.version>
+        <jframe.common.version>1.0-SNAPSHOT</jframe.common.version>
+
     </properties>
 
     <dependencyManagement>
@@ -24,6 +26,12 @@
                 <version>${spring.boot.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>com.jframe.common</groupId>
+                <artifactId>common</artifactId>
+                <version>${jframe.common.version}</version>
             </dependency>
 
 <!--            &lt;!&ndash; Spring 核心 &ndash;&gt;-->
