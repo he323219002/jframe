@@ -11,6 +11,8 @@ public class BusinessException extends RuntimeException  {
 
     @Serial
     private static final long serialVersionUID = -2555751982973992203L;
+
+
     /**
      * 获取错误码
      *
@@ -25,6 +27,15 @@ public class BusinessException extends RuntimeException  {
      */
     private String errorMsg;
 
+    public BusinessException() {
+    }
+
+    public BusinessException(String errorCode, String errorMsg) {
+        this.errorCode = errorCode;
+        this.errorMsg = errorMsg;
+    }
+
+
     public String getErrorCode() {
         return errorCode;
     }
@@ -33,15 +44,15 @@ public class BusinessException extends RuntimeException  {
         return errorMsg;
     }
 
-    public BusinessException() {
-        super();
+    @Override
+    public String getMessage() {
+        return errorMsg;
     }
 
 
     public static BusinessException of(CommonError commonError) {
-        BusinessException exception = new BusinessException();
-        exception.errorCode = commonError.errorCode();
-        exception.errorMsg = commonError.errorMsg();
-        return exception;
+        return new BusinessException(commonError.errorCode(),commonError.errorMsg());
     }
+
+
 }

@@ -108,6 +108,13 @@
             <version>${jframe.common.version}</version>
         </dependency>
 
+
+        <dependency>
+            <artifactId>jframe-spring-boot-starter-web</artifactId>
+            <groupId>com.jframe.framework</groupId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
     </dependencies>
 
     <build>
