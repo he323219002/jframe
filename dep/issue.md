@@ -34,4 +34,12 @@
        }
    ```
 
+3. 自定义异常未被捕捉，前端页面一直是原生错误
+
+   解决方式：启动类加上扫描包的地址
+
+   ```
+   @SpringBootApplication(scanBasePackages = {"com.jframe.basic","com.jframe.framework"})
+   ```
+
    

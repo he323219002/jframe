@@ -21,6 +21,7 @@ public class GlobalExceptionHandler {
     // todo 这里可以注入日志插入服务记录异常
 
     @ExceptionHandler(value = BusinessException.class)
+    @ResponseBody
     public CommonResult<?> businessExceptionHandler(BusinessException exception) {
         log.info("[businessExceptionHandler]", exception);
         return CommonResult.error(exception);
