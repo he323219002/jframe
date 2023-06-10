@@ -12,6 +12,7 @@
     <modules>
         <module>jframe-spring-boot-starter-banner</module>
         <module>jframe-spring-boot-starter-web</module>
+        <module>jframe-spring-boot-starter-security</module>
     </modules>
 
     <properties>

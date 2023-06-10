@@ -29,9 +29,9 @@
             <artifactId>mapstruct</artifactId>
         </dependency>
 
-        <dependency>
-            <artifactId>jframe-spring-boot-starter-web</artifactId>
-            <groupId>com.jframe.framework</groupId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <artifactId>jframe-spring-boot-starter-web</artifactId>-->
+<!--            <groupId>com.jframe.framework</groupId>-->
+<!--        </dependency>-->
     </dependencies>
 </project>

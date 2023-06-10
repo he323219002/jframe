@@ -42,4 +42,11 @@
    @SpringBootApplication(scanBasePackages = {"com.jframe.basic","com.jframe.framework"})
    ```
 
+4. 引入starter的bean未生效，巨坑，2.7之后有了新的配置方式，用原来的spring.factories可能不会生效，用下列方法可以生效
+
+   ```
+   在原来的META-INF下新建spring目录，继续新建org.springframework.boot.autoconfigure.AutoConfiguration.imports 文件
+   在上述文件中放入要引入的configuration
+   ```
+
    
