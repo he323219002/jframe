@@ -16,7 +16,7 @@ public class Application {
     private static ApplicationContext applicationContext;
     public static void main(String[] args) {
         ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
-        printAllBeans(context);
+//        printAllBeans(context);
     }
 
     private static void printAllBeans(ApplicationContext applicationContext) {

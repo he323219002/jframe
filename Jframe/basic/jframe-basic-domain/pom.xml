@@ -23,6 +23,9 @@
             <artifactId>mybatis-plus-boot-starter</artifactId>
         </dependency>
 
-
+        <dependency>
+            <artifactId>jframe-spring-boot-starter-web</artifactId>
+            <groupId>com.jframe.framework</groupId>
+        </dependency>
     </dependencies>
 </project>

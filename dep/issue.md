@@ -49,4 +49,37 @@
    在上述文件中放入要引入的configuration
    ```
 
+4. 在maven编译中`${reversion}`未找到，且从引用的项目中看，reversion没有被转换为具体的版本号，导致编译无法找到
+
+   ```
+   在父pom中添加以下maven 插件配置，即可解决
+               <plugin>
+                   <groupId>org.codehaus.mojo</groupId>
+                   <artifactId>flatten-maven-plugin</artifactId>
+                   <version>1.2.1</version>
+                   <configuration>
+                       <!-- 避免IDE将 .flattened-pom.xml 自动识别为功能模块 -->
+                       <flattenedPomFilename>pom-xml-flattened</flattenedPomFilename>
+                       <updatePomFile>true</updatePomFile>
+                       <flattenMode>resolveCiFriendliesOnly</flattenMode>
+                   </configuration>
+                   <executions>
+                       <execution>
+                           <id>flatten</id>
+                           <phase>process-resources</phase>
+                           <goals>
+                               <goal>flatten</goal>
+                           </goals>
+                       </execution>
+                       <execution>
+                           <id>flatten.clean</id>
+                           <phase>clean</phase>
+                           <goals>
+                               <goal>clean</goal>
+                           </goals>
+                       </execution>
+                   </executions>
+               </plugin>
+   ```
+   
    
