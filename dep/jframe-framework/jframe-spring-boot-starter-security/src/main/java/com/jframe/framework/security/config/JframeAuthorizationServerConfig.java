@@ -36,7 +36,7 @@ public class JframeAuthorizationServerConfig {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.GET).permitAll()
+                .antMatchers("/acc/**","/actuator/**").permitAll()
 //                .antMatchers("/acc/**","/acc/user/test").permitAll()
                 .anyRequest().authenticated()
                 .and()
