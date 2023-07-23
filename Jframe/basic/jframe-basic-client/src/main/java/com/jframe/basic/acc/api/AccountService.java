@@ -2,6 +2,7 @@ package com.jframe.basic.acc.api;
 
 
 import com.jframe.basic.acc.dto.AccountTestQry;
+import com.jframe.basic.acc.dto.cmd.AccountAdminCreateCmd;
 
 /**
  * <p>
@@ -14,4 +15,12 @@ import com.jframe.basic.acc.dto.AccountTestQry;
 public interface AccountService {
 
     String testGet(AccountTestQry qry);
+
+
+    /**
+     * 创建管理员账号
+     *
+     * @param cmd
+     */
+    void createAdmin(AccountAdminCreateCmd cmd);
 }

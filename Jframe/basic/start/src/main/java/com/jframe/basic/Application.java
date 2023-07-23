@@ -1,5 +1,6 @@
 package com.jframe.basic;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,7 +14,7 @@ import org.springframework.context.ConfigurableApplicationContext;
  * @author Frank Zhang
  */
 @SpringBootApplication(scanBasePackages = {"com.jframe.basic","com.jframe.framework"})
-@MapperScan(basePackages = "com.jframe.basic")
+@MapperScan(value = "com.jframe.basic",annotationClass = Mapper.class)
 public class Application {
     private static ApplicationContext applicationContext;
     public static void main(String[] args) {

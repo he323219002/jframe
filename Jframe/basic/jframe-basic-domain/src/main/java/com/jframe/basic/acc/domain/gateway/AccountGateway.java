@@ -15,5 +15,5 @@ public interface AccountGateway {
      * 测试创建管理员
      * @param account
      */
-    void testCreateAdmin(Account account);
+    void createAdmin(Account account);
 }

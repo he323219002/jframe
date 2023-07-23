@@ -6,6 +6,7 @@ import com.jframe.basic.acc.domain.exception.AccountException;
 import com.jframe.basic.acc.domain.gateway.AccountGateway;
 import com.jframe.basic.acc.gatewayimpl.database.repository.AccountRepository;
 import com.jframe.exception.BusinessException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -21,6 +22,8 @@ public class AccountGatewayImpl implements AccountGateway {
     private AccountRepository accountRepository;
     @Resource
     private AccountMapStruct accountMapStruct;
+    @Resource
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public Account testUser(Long id) {
@@ -29,6 +32,10 @@ public class AccountGatewayImpl implements AccountGateway {
     }
 
     @Override
-    public void testCreateAdmin(Account account) {
+    public void createAdmin(Account account) {
+        // 密码加密
+        String rawPassword = account.getPassword();
+        account.setPassword(passwordEncoder.encode(rawPassword));
+        accountRepository.createAdminAccount(account);
     }
 }

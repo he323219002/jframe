@@ -1,7 +1,10 @@
 package com.jframe.basic.acc.domain.entity;
+
 import com.jframe.base.Entity;
+
 import java.time.LocalDateTime;
 
+import lombok.Data;
 import lombok.EqualsAndHashCode;
 import com.jframe.basic.acc.domain.enumerate.*;
 import lombok.Getter;
@@ -16,12 +19,18 @@ import lombok.Setter;
 
 
 @EqualsAndHashCode(callSuper = false)
-@Getter
-@Setter
-public class Account extends Entity{
-
+@Data
+public class Account extends Entity {
 
     private static final long serialVersionUID = 1L;
+
+    public Account() {
+    }
+
+    private Account(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
 
     /**
      *
@@ -32,6 +41,11 @@ public class Account extends Entity{
      * 用户名
      */
     private String username;
+
+    /**
+     * 密码
+     */
+    private String password;
 
     /**
      * 手机号
@@ -58,15 +72,6 @@ public class Account extends Entity{
      */
     private AccountStatusEnum status;
 
-    /**
-     * 版本号
-     */
-    private Integer version;
-
-    /**
-     * 逻辑删除
-     */
-    private Byte deleted;
 
     /**
      * 创建人id
@@ -87,5 +92,12 @@ public class Account extends Entity{
      * 更新时间
      */
     private LocalDateTime updateTime;
+
+
+    public static Account adminAccount(String username, String password) {
+        Account account = new Account(username, password);
+        account.status = AccountStatusEnum.NORMAL;
+        return account;
+    }
 
 }

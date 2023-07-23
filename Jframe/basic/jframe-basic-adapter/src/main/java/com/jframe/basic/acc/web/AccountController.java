@@ -2,7 +2,10 @@ package com.jframe.basic.acc.web;
 
 import com.jframe.basic.acc.api.AccountService;
 import com.jframe.basic.acc.dto.AccountTestQry;
+import com.jframe.basic.acc.dto.cmd.AccountAdminCreateCmd;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -20,7 +23,14 @@ public class AccountController {
     private AccountService accountService;
 
     @GetMapping(value = "/acc/user/test")
-    public String testUser(@Valid AccountTestQry qry){
+    public String testUser(@Valid AccountTestQry qry) {
+        System.out.println("123");
         return accountService.testGet(qry);
+    }
+
+    @PostMapping(value = "/acc/user/admin_creat")
+    public String createAdmin(@Valid @RequestBody AccountAdminCreateCmd cmd) {
+        accountService.createAdmin(cmd);
+        return "aaa";
     }
 }

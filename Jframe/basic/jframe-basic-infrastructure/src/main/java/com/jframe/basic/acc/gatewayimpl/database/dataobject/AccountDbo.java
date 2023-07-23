@@ -6,6 +6,7 @@ import com.jframe.base.Dbo;
 import com.jframe.basic.acc.domain.enumerate.AccountStatusEnum;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -18,9 +19,9 @@ import java.time.LocalDateTime;
  */
 
 @EqualsAndHashCode(callSuper = false)
-@Data
 @TableName(value = "acc_account")
-public class AccountDbo extends Dbo implements Serializable {
+@Data
+public class AccountDbo extends Dbo {
 
     @Serial
     private static final long serialVersionUID = 1L;

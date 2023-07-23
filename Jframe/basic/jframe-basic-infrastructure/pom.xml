@@ -29,6 +29,11 @@
             <artifactId>mapstruct</artifactId>
         </dependency>
 
+        <!--密码匹配-->
+        <dependency>
+            <artifactId>jframe-spring-boot-starter-security</artifactId>
+            <groupId>com.jframe.framework</groupId>
+        </dependency>
 <!--        <dependency>-->
 <!--            <artifactId>jframe-spring-boot-starter-web</artifactId>-->
 <!--            <groupId>com.jframe.framework</groupId>-->
