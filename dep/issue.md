@@ -82,4 +82,11 @@
                </plugin>
    ```
    
+6. mybatis plus报Invalid bound statement (not found):解决
+
+   ```
+   在启动类上新增注解@MapperScan(value = "com.jframe.basic",annotationClass = Mapper.class)
+   原来注解为@MapperScan(basePackages = "com.jframe.basic")
+   ```
+
    
