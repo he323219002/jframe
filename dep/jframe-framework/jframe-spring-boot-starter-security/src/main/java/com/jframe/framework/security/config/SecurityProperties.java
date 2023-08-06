@@ -7,7 +7,7 @@ import org.springframework.validation.annotation.Validated;
 /**
  * @Author: Jimmy He
  * @Date: 2023/7/23 18:42
- * @Description: TODO 描述
+ * @Description: spring-security 配置
  */
 @ConfigurationProperties(prefix = "jframe.security")
 @Data

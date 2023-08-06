@@ -5,9 +5,11 @@ import com.jframe.basic.acc.command.AccountAdminCreateCmdExe;
 import com.jframe.basic.acc.command.query.TestUserQryExe;
 import com.jframe.basic.acc.dto.AccountTestQry;
 import com.jframe.basic.acc.dto.cmd.AccountAdminCreateCmd;
+import com.jframe.basic.org.api.OrganizationService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import javax.validation.constraints.NotNull;
 
 /**
  * <p>
@@ -24,6 +26,8 @@ public class AccountServiceImpl implements AccountService {
     private TestUserQryExe testUserQryExe;
     @Resource
     private AccountAdminCreateCmdExe accountAdminCreateCmdExe;
+    @Resource
+    private OrganizationService organizationService;
 
     @Override
     public String testGet(AccountTestQry qry) {
@@ -32,6 +36,13 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public void createAdmin(AccountAdminCreateCmd cmd) {
+        // 校验租户
+        Long tenantId = cmd.getTenantId();
         accountAdminCreateCmdExe.execute(cmd);
+    }
+
+    // 校验租户id
+    private void checkTenantId(Long tenantId) {
+
     }
 }

@@ -11,6 +11,7 @@ import com.jframe.base.Dbo;
 import java.time.LocalDateTime;
 
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 
 import java.io.Serial;
 
@@ -25,6 +26,7 @@ import java.io.Serial;
  */
 @EqualsAndHashCode(callSuper = false)
 @TableName("org_organization")
+@Getter
 public class OrganizationDbo extends Dbo {
     @Serial
     private static final long serialVersionUID = 1L;

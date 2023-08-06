@@ -3,6 +3,10 @@ package com.jframe.base;
 import com.jframe.constants.GlobalResponseConstant;
 import com.jframe.exception.BusinessException;
 import com.jframe.exception.CommonError;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 import org.springframework.util.Assert;
 
 import java.io.Serial;
@@ -16,6 +20,7 @@ import java.nio.charset.CoderResult;
  */
 public class CommonResult<T> extends Dto {
 
+
     @Serial
     private static final long serialVersionUID = 207203400807630572L;
 
@@ -24,6 +29,15 @@ public class CommonResult<T> extends Dto {
     private T data;
 
     private String msg;
+
+
+    public static <T> CommonResult<T> success() {
+        CommonResult<T> result = new CommonResult<>();
+        result.setCode(GlobalResponseConstant.SUCCESS_CODE);
+        result.setData(null);
+        result.setMsg(GlobalResponseConstant.SUCCESS);
+        return result;
+    }
 
     public static <T> CommonResult<T> success(T data) {
         CommonResult<T> result = new CommonResult<>();
@@ -47,7 +61,6 @@ public class CommonResult<T> extends Dto {
         result.msg = error.getErrorMsg();
         return result;
     }
-
 
 
     public String getCode() {

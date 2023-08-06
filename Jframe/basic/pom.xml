@@ -16,11 +16,12 @@
     <properties>
         <java.version>17</java.version>
         <cola.components.version>4.3.1</cola.components.version>
-        <mybatis-plus.version>3.5.3</mybatis-plus.version>
+<!--        <mybatis-plus.version>3.5.3</mybatis-plus.version>-->
         <jframe.common.version>1.0-SNAPSHOT</jframe.common.version>
         <jframe.web.starter.version>1.0-SNAPSHOT</jframe.web.starter.version>
         <jframe.security.starter.version>1.0-SNAPSHOT</jframe.security.starter.version>
         <jframe.banner.starter.version>1.0-SNAPSHOT</jframe.banner.starter.version>
+        <jframe.orm.starter.version>1.0-SNAPSHOT</jframe.orm.starter.version>
         <mapstruct.version>1.5.4.Final</mapstruct.version>
         <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
         <reversion>1.0-SNAPSHOT</reversion>
@@ -64,11 +65,11 @@
                 <version>${project.version}</version>
             </dependency>
 
-            <dependency>
-                <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus-boot-starter</artifactId>
-                <version>${mybatis-plus.version}</version>
-            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>com.baomidou</groupId>-->
+<!--                <artifactId>mybatis-plus-boot-starter</artifactId>-->
+<!--                <version>${mybatis-plus.version}</version>-->
+<!--            </dependency>-->
             <!--Project modules End-->
 
 
@@ -112,6 +113,11 @@
                 <version>${reversion}</version>
             </dependency>
 
+            <dependency>
+                <artifactId>jframe-spring-boot-starter-orm</artifactId>
+                <groupId>com.jframe.framework</groupId>
+                <version>${reversion}</version>
+            </dependency>
 
         </dependencies>
     </dependencyManagement>
