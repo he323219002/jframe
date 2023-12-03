@@ -27,5 +27,9 @@ public class AccountAdminCreateCmd extends Command {
     @NotNull(message = "密码必填")
     private String password;
 
-
+    /**
+     * 租户
+     */
+    @NotNull(message = "租户id必填")
+    private Long tenantId;
 }

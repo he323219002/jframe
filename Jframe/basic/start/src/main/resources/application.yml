@@ -3,9 +3,9 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.195.150:3306/jframe
+    url: jdbc:mysql://127.0.0.1:3306/jframe
     username: root
-    password: home
+    password: root
 management:
   endpoints:
     web:

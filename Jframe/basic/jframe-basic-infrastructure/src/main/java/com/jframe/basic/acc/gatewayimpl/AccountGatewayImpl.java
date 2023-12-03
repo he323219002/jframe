@@ -1,6 +1,7 @@
 package com.jframe.basic.acc.gatewayimpl;
 
 import com.jframe.basic.acc.convertor.AccountMapStruct;
+import com.jframe.basic.acc.domain.constant.AccConstant;
 import com.jframe.basic.acc.domain.entity.Account;
 import com.jframe.basic.acc.domain.exception.AccountException;
 import com.jframe.basic.acc.domain.gateway.AccountGateway;
@@ -33,6 +34,8 @@ public class AccountGatewayImpl implements AccountGateway {
 
     @Override
     public void createAdmin(Account account) {
+        account.setCreateUserId(AccConstant.SYSTEM_ID);
+        account.setUpdateUserId(AccConstant.SYSTEM_ID);
         // 密码加密
         String rawPassword = account.getPassword();
         account.setPassword(passwordEncoder.encode(rawPassword));

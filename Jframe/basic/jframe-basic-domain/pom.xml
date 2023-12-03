@@ -19,9 +19,10 @@
         </dependency>
 
         <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <artifactId>jframe-spring-boot-starter-orm</artifactId>
+            <groupId>com.jframe.framework</groupId>
         </dependency>
+
 
         <dependency>
             <artifactId>jframe-spring-boot-starter-web</artifactId>

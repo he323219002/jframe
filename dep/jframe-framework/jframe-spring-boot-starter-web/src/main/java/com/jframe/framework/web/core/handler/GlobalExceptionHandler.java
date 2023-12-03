@@ -30,6 +30,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(value = Exception.class)
+    @ResponseBody
     public CommonResult<?> defaultExceptionHandler(Exception exception) {
         log.error("[defaultExceptionHandler]", exception);
         return CommonResult.error(GlobalResponseEnum.EXCEPTION);

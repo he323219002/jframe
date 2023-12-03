@@ -1,0 +1,2 @@
+com.jframe.framework.orm.config.JframeMetaObjectHandler
+com.jframe.framework.orm.config.MybatisPlusConfig

@@ -1,18 +1,19 @@
+-- auto-generated definition
 create table acc_account
 (
-    id              bigint       not null,
-    username        varchar(128) not null comment '用户名',
-    phone           varchar(32)  null comment '手机号',
-    name            varchar(32)  null comment '姓名',
-    id_number_crypt varchar(128) null comment '身份证信息（加密）',
-    birthday        datetime     null comment '生日',
-    status          int          not null comment 'enum=10:NORMAL:正常;20:BANNED:停用;',
-    version         int          not null comment '版本号',
-    deleted         tinyint      not null comment '逻辑删除',
-    create_user_id  bigint       not null comment '创建人id',
-    create_time     datetime     not null comment '创建人姓名',
-    update_user_id  bigint       not null comment '更新人id',
-    update_time     datetime     not null comment '更新时间',
+    id              bigint            not null,
+    username        varchar(128)      not null comment '用户名',
+    phone           varchar(32)       null comment '手机号',
+    name            varchar(32)       null comment '姓名',
+    id_number_crypt varchar(128)      null comment '身份证信息（加密）',
+    birthday        datetime          null comment '生日',
+    status          int               not null comment 'enum=10:NORMAL:正常;20:BANNED:停用;',
+    version         int     default 1 not null comment '版本号',
+    deleted         tinyint default 0 not null comment '逻辑删除',
+    create_user_id  bigint            not null comment '创建人id',
+    create_time     datetime          not null comment '创建人姓名',
+    update_user_id  bigint            not null comment '更新人id',
+    update_time     datetime          not null comment '更新时间',
     constraint acc_account_id_uindex
         unique (id)
 )
@@ -35,8 +36,8 @@ create table acc_business_account
     create_time    datetime      not null comment '创建时间',
     update_user_id bigint        not null comment '更新人id',
     update_time    datetime      not null comment '更新时间',
-    version        int           not null comment '版本号',
-    deleted        tinyint       not null comment '逻辑删除',
+    version        int     default 1 not null comment '版本号',
+    deleted        tinyint default 0 not null comment '逻辑删除',
     constraint acc_business_account_id_uindex
         unique (id)
 )
@@ -62,8 +63,8 @@ create table acc_business_account_extra
     create_time         datetime     not null comment '创建时间',
     update_user_id      bigint       not null comment '更新人id',
     update_time         datetime     not null comment '更新时间',
-    version             int          not null comment '版本号',
-    deleted             tinyint      not null comment '逻辑删除',
+    version        int     default 1 not null comment '版本号',
+    deleted        tinyint default 0 not null comment '逻辑删除',
     constraint acc_account_extra_id_uindex
         unique (id)
 )
@@ -88,8 +89,8 @@ create table acc_business_third_app_ref
     create_time            datetime     not null comment '创建时间',
     update_user_id         bigint       not null comment '更新人id',
     update_time            datetime     not null comment '更新时间',
-    version                int          not null comment '版本号',
-    deleted                tinyint      not null comment '逻辑删除',
+    version        int     default 1 not null comment '版本号',
+    deleted        tinyint default 0 not null comment '逻辑删除',
     constraint acc_business_third_app_ref_id_uindex
         unique (id)
 )
@@ -109,8 +110,8 @@ create table acc_third_party_account
     create_time         datetime     not null comment '创建时间',
     update_user_id      bigint       not null comment '更新人id',
     update_time         datetime     not null comment '更新时间',
-    version             int          not null comment '版本号',
-    deleted             tinyint      not null comment '逻辑删除',
+    version        int     default 1 not null comment '版本号',
+    deleted        tinyint default 0 not null comment '逻辑删除',
     constraint acc_third_party_account_id_uindex
         unique (id)
 )

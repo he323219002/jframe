@@ -1,5 +1,6 @@
 package com.jframe.basic.acc.web;
 
+import com.jframe.base.CommonResult;
 import com.jframe.basic.acc.api.AccountService;
 import com.jframe.basic.acc.dto.AccountTestQry;
 import com.jframe.basic.acc.dto.cmd.AccountAdminCreateCmd;
@@ -29,8 +30,8 @@ public class AccountController {
     }
 
     @PostMapping(value = "/acc/user/admin_creat")
-    public String createAdmin(@Valid @RequestBody AccountAdminCreateCmd cmd) {
+    public CommonResult<Void> createAdmin(@Valid @RequestBody AccountAdminCreateCmd cmd) {
         accountService.createAdmin(cmd);
-        return "aaa";
+        return CommonResult.success();
     }
 }
