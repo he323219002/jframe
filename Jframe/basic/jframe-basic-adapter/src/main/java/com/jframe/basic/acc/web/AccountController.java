@@ -32,6 +32,6 @@ public class AccountController {
     @PostMapping(value = "/acc/user/admin_creat")
     public CommonResult<Void> createAdmin(@Valid @RequestBody AccountAdminCreateCmd cmd) {
         accountService.createAdmin(cmd);
-        return CommonResult.success();
+        return CommonResult.success(null);
     }
 }

@@ -1,17 +1,10 @@
 package com.jframe.base;
 
-import com.jframe.constants.GlobalResponseConstant;
+import com.jframe.constants.GlobalResponseEnum;
 import com.jframe.exception.BusinessException;
-import com.jframe.exception.CommonError;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
-import lombok.experimental.SuperBuilder;
 import org.springframework.util.Assert;
 
 import java.io.Serial;
-import java.net.http.HttpResponse;
-import java.nio.charset.CoderResult;
 
 /**
  * @Author: Jimmy He
@@ -19,7 +12,6 @@ import java.nio.charset.CoderResult;
  * @Description: 通用响应
  */
 public class CommonResult<T> extends Dto {
-
 
     @Serial
     private static final long serialVersionUID = 207203400807630572L;
@@ -30,25 +22,16 @@ public class CommonResult<T> extends Dto {
 
     private String msg;
 
-
-    public static <T> CommonResult<T> success() {
-        CommonResult<T> result = new CommonResult<>();
-        result.setCode(GlobalResponseConstant.SUCCESS_CODE);
-        result.setData(null);
-        result.setMsg(GlobalResponseConstant.SUCCESS);
-        return result;
-    }
-
     public static <T> CommonResult<T> success(T data) {
         CommonResult<T> result = new CommonResult<>();
-        result.setCode(GlobalResponseConstant.SUCCESS_CODE);
+        result.setCode(GlobalResponseEnum.SUCCESS.getCode());
         result.setData(data);
-        result.setMsg(GlobalResponseConstant.SUCCESS);
+        result.setMsg(GlobalResponseEnum.SUCCESS.getMessage());
         return result;
     }
 
     public static <T> CommonResult<T> error(String errorCode, String errorMsg) {
-        Assert.isTrue(!GlobalResponseConstant.SUCCESS.equals(errorCode), "code码必须错误");
+        Assert.isTrue(!GlobalResponseEnum.SUCCESS.getCode().equals(errorCode), "code码必须错误");
         CommonResult<T> result = new CommonResult<>();
         result.code = errorCode;
         result.msg = errorMsg;
@@ -61,6 +44,15 @@ public class CommonResult<T> extends Dto {
         result.msg = error.getErrorMsg();
         return result;
     }
+
+    public static <T> CommonResult<T> error(GlobalResponseEnum rsp) {
+        CommonResult<T> result = new CommonResult<>();
+        result.code = rsp.getCode();
+        result.msg = rsp.getMessage();
+        return result;
+    }
+
+
 
 
     public String getCode() {
