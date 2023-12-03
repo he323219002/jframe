@@ -1,10 +1,12 @@
 package com.jframe.framework.web.core.handler;
 
 import com.jframe.base.CommonResult;
-import com.jframe.constants.GlobalResponseConstant;
+import com.jframe.constants.GlobalResponseEnum;
 import com.jframe.exception.BusinessException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @Author: Jimmy He
@@ -30,6 +32,16 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = Exception.class)
     public CommonResult<?> defaultExceptionHandler(Exception exception) {
         log.error("[defaultExceptionHandler]", exception);
-        return CommonResult.error(GlobalResponseConstant.EXCEPTION_CODE, GlobalResponseConstant.EXCEPTION);
+        return CommonResult.error(GlobalResponseEnum.EXCEPTION);
+    }
+
+    /**
+     * 处理过滤器异常
+     * @param request
+     * @param ex
+     * @return
+     */
+    public CommonResult<?> filterExceptionHandler(HttpServletRequest request, Throwable ex){
+        return null;
     }
 }

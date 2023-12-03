@@ -24,7 +24,6 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true)
 @Slf4j
-//@EnableAutoConfiguration
 public class JframeAuthorizationServerConfig {
 
     @Bean
@@ -49,6 +48,10 @@ public class JframeAuthorizationServerConfig {
         return authenticationConfiguration.getAuthenticationManager();
     }
 
+    /**
+     * 存储密码加密
+     * @return
+     */
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();

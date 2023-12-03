@@ -18,4 +18,13 @@ public class SecurityProperties {
      * PasswordEncoder 加密复杂度，越高开销越大
      */
     private Integer passwordEncoderLength = 4;
+
+    /**
+     * 过期时间：秒级
+     */
+    private Long jwtExpire;
+
+    private String jwtSecret;
+
+    private String jwtHeader;
 }

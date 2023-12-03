@@ -17,3 +17,11 @@ management:
 
 mybatis-plus:
   mapper-locations: classpath:/mapper/*.xml
+
+jframe:
+  security:
+    jwt:
+      header: Authorization
+      # 过期时间，s为单位 7d
+      expire: 60 * 60 * 24 * 7
+      secret: jframe_jwt_jvciziyaebnr
