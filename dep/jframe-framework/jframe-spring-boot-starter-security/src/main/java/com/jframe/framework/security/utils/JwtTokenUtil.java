@@ -34,7 +34,7 @@ public class JwtTokenUtil {
 
 
         Date nowDate = new Date();
-        Date expireDate = new Date(nowDate.getTime() + 1000 * securityProperties.getJwtExpire());
+        Date expireDate = new Date(nowDate.getTime() + 1000 * securityProperties.getExpire());
 
         SecretKey secretKey = generalKey();
 
@@ -81,7 +81,7 @@ public class JwtTokenUtil {
      * @return SecretKey
      */
     public SecretKey generalKey() {
-        byte[] encodedKey = Base64.getDecoder().decode(securityProperties.getJwtSecret());
+        byte[] encodedKey = Base64.getDecoder().decode(securityProperties.getSecret());
         return new SecretKeySpec(encodedKey, 0, encodedKey.length, "HmacSHA512");
     }
 

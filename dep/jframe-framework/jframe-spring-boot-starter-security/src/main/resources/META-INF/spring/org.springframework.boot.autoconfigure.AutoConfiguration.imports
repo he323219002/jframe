@@ -1,1 +1,2 @@
 com.jframe.framework.security.config.JframeAuthorizationServerConfig
+com.jframe.framework.security.config.JframeSecurityAutoConfiguration

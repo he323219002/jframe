@@ -9,7 +9,7 @@ import org.springframework.validation.annotation.Validated;
  * @Date: 2023/7/23 18:42
  * @Description: spring-security 配置
  */
-@ConfigurationProperties(prefix = "jframe.security")
+@ConfigurationProperties(prefix = "jframe.security.jwt")
 @Data
 @Validated
 public class SecurityProperties {
@@ -22,9 +22,9 @@ public class SecurityProperties {
     /**
      * 过期时间：秒级
      */
-    private Long jwtExpire;
+    private Long expire;
 
-    private String jwtSecret;
+    private String secret;
 
-    private String jwtHeader;
+    private String header;
 }

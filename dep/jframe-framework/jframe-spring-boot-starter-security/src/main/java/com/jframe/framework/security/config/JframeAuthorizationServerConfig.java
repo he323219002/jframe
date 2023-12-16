@@ -1,5 +1,6 @@
 package com.jframe.framework.security.config;
 
+import com.jframe.framework.security.spi.BaseTokenAuthenticationFilter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
@@ -11,10 +12,13 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.access.AccessDeniedHandler;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import javax.annotation.Resource;
+import java.util.Objects;
 
 /**
  * @Author: Jimmy He
@@ -27,34 +31,41 @@ import org.springframework.security.web.SecurityFilterChain;
 @Slf4j
 public class JframeAuthorizationServerConfig {
 
+    @Resource
+    private AuthenticationEntryPoint authenticationEntryPoint;
+    @Resource
+    private AccessDeniedHandler accessDeniedHandler;
+    @Resource
+    private BaseTokenAuthenticationFilter jwtTokenAuthService;
+
+
     @Bean
     @Order(SecurityProperties.BASIC_AUTH_ORDER)
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         log.info("进入过滤");
-        return http.csrf().disable()
+        http.cors().and().csrf().disable()
                 // 基于token，不需要session
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                .authorizeRequests()
-                .antMatchers("/acc/**","/actuator/**").permitAll()
-//                .antMatchers("/acc/**","/acc/user/test").permitAll()
-                .anyRequest().authenticated()
+                // 认证失败
+                .exceptionHandling().authenticationEntryPoint(authenticationEntryPoint)
+                .accessDeniedHandler(accessDeniedHandler)
                 .and()
-                .build();
+                .authorizeRequests()
+                .antMatchers("/acc/**", "/actuator/**").permitAll()
+//                .antMatchers("/acc/**","/acc/user/test").permitAll()
+                .anyRequest().authenticated();
+
+        if (Objects.nonNull(jwtTokenAuthService)) {
+            http.addFilterBefore(jwtTokenAuthService, UsernamePasswordAuthenticationFilter.class);
+        }
+
+        return http.build();
     }
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)
             throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
-    }
-
-    /**
-     * 存储密码加密
-     * @return
-     */
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
     }
 }

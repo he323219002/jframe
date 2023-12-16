@@ -3,9 +3,9 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/jframe
+    url: jdbc:mysql://192.168.195.150:3306/jframe
     username: root
-    password: root
+    password: home
 management:
   endpoints:
     web:
@@ -22,6 +22,6 @@ jframe:
   security:
     jwt:
       header: Authorization
-      # 过期时间，s为单位 7d
-      expire: 60 * 60 * 24 * 7
+      # 过期时间，s为单位 7d 60 * 60 * 24 * 7
+      expire: 604800
       secret: jframe_jwt_jvciziyaebnr

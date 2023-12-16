@@ -7,7 +7,6 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -29,7 +28,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 
         // 生成JWT，并放置到请求头中
         String jwt = jwtTokenUtil.generateToken(authentication.getName());
-        response.setHeader(jwtTokenUtil.generateToken(securityProperties.getJwtHeader()), jwt);
+        response.setHeader(jwtTokenUtil.generateToken(securityProperties.getHeader()), jwt);
 
     }
 }

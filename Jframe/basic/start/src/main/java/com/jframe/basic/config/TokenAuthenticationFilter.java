@@ -1,15 +1,19 @@
-package com.jframe.basic.filter;
+package com.jframe.basic.config;
 
 import cn.hutool.core.util.StrUtil;
 import com.jframe.base.CommonResult;
 import com.jframe.constants.GlobalResponseEnum;
 import com.jframe.framework.security.config.SecurityProperties;
+import com.jframe.framework.security.spi.BaseTokenAuthenticationFilter;
 import com.jframe.framework.security.utils.JwtTokenUtil;
 import com.jframe.utils.ServletUtils;
 import io.jsonwebtoken.Claims;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Import;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.annotation.Resource;
 import javax.servlet.FilterChain;
@@ -21,11 +25,12 @@ import java.util.Objects;
 
 /**
  * @Author: Jimmy He
- * @Date: 2023/10/22 20:19
- * @Description: 從jwttoken獲取信息
+ * @Date: 2023/12/16 18:05
+ * @Description: TODO 描述
  */
+@Component
 @Slf4j
-public class JwtAuthenticationFilter extends BasicAuthenticationFilter {
+public class TokenAuthenticationFilter extends BaseTokenAuthenticationFilter {
 
     @Resource
     private SecurityProperties securityProperties;
@@ -33,9 +38,7 @@ public class JwtAuthenticationFilter extends BasicAuthenticationFilter {
     private JwtTokenUtil jwtTokenUtil;
 
 
-    public JwtAuthenticationFilter(AuthenticationManager authenticationManager) {
-        super(authenticationManager);
-    }
+
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
@@ -58,10 +61,10 @@ public class JwtAuthenticationFilter extends BasicAuthenticationFilter {
         }
 
         String username = claim.getSubject();
-        // todo 获取用户
-        log.info("username:{}",username);
+        // todo 获取用户放在主工程里（依赖于获取用户的服务），后期提供一个专门的api用来提供，才可以集成到starter
 
 
         chain.doFilter(request, response);
     }
+
 }
