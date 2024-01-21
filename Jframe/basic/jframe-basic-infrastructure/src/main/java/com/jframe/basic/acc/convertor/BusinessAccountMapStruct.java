@@ -15,4 +15,6 @@ public interface BusinessAccountMapStruct {
     BusinessAccount toEntity(BusinessAccountDto dto);
 
     BusinessAccountDbo toDbo(BusinessAccount entity);
+
+    BusinessAccount toEntity(BusinessAccountDbo dbo);
 }

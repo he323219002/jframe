@@ -1,6 +1,7 @@
 package com.jframe.basic.acc.domain.gateway;
 
 import com.jframe.basic.acc.domain.entity.Account;
+import com.jframe.basic.acc.domain.enumerate.BusinessAccountTypeEnum;
 
 /**
  * @Author: Jimmy He
@@ -9,11 +10,13 @@ import com.jframe.basic.acc.domain.entity.Account;
  */
 public interface AccountGateway {
 
-    Account testUser(Long  id);
+    Account testUser(Long id);
 
     /**
      * 测试创建管理员
+     *
      * @param account
      */
     void createAdmin(Account account);
+
 }

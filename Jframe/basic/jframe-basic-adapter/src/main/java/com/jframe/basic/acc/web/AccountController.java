@@ -23,7 +23,7 @@ public class AccountController {
     @Resource
     private AccountService accountService;
 
-    @GetMapping(value = "/acc/user/test")
+    @GetMapping(value = "/new_acc/user/test")
     public String testUser(@Valid AccountTestQry qry) {
         System.out.println("123");
         return accountService.testGet(qry);

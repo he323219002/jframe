@@ -88,6 +88,6 @@ public class ThirdPartyAccountDbo extends Dbo {
     */
     @TableField("deleted")
     @TableLogic
-    private Byte deleted;
+    private Boolean deleted;
 
 }

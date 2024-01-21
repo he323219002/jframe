@@ -76,6 +76,6 @@ public class BusinessThirdAppRef extends Entity{
     /**
     * 逻辑删除
     */
-    private Byte deleted;
+    private Boolean deleted;
 
 }

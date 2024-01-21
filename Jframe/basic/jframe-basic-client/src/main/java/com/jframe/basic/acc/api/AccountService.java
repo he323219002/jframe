@@ -23,4 +23,5 @@ public interface AccountService {
      * @param cmd
      */
     void createAdmin(AccountAdminCreateCmd cmd);
+
 }

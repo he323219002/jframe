@@ -100,6 +100,6 @@ public class BusinessThirdAppRefDbo extends Dbo {
     */
     @TableField("deleted")
     @TableLogic
-    private Byte deleted;
+    private Boolean deleted;
 
 }

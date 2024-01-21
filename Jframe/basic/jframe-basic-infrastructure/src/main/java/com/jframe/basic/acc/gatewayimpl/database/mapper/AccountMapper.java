@@ -1,6 +1,7 @@
 package com.jframe.basic.acc.gatewayimpl.database.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.jframe.basic.acc.domain.enumerate.BusinessAccountTypeEnum;
 import com.jframe.basic.acc.gatewayimpl.database.dataobject.AccountDbo;
 import org.apache.ibatis.annotations.Mapper;
 

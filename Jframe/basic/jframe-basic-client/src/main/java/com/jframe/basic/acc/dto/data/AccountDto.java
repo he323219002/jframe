@@ -61,7 +61,7 @@ public class AccountDto extends Dto {
     /**
      * 逻辑删除
      */
-    private Byte deleted;
+    private Boolean deleted;
 
     /**
      * 创建人id

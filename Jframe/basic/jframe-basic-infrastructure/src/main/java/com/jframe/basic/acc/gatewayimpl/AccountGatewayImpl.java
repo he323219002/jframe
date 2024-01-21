@@ -3,6 +3,7 @@ package com.jframe.basic.acc.gatewayimpl;
 import com.jframe.basic.acc.convertor.AccountMapStruct;
 import com.jframe.basic.acc.domain.constant.AccConstant;
 import com.jframe.basic.acc.domain.entity.Account;
+import com.jframe.basic.acc.domain.enumerate.BusinessAccountTypeEnum;
 import com.jframe.basic.acc.domain.exception.AccountException;
 import com.jframe.basic.acc.domain.gateway.AccountGateway;
 import com.jframe.basic.acc.gatewayimpl.database.repository.AccountRepository;
@@ -41,4 +42,6 @@ public class AccountGatewayImpl implements AccountGateway {
         account.setPassword(passwordEncoder.encode(rawPassword));
         accountRepository.createAdminAccount(account);
     }
+
+
 }

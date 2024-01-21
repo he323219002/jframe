@@ -41,7 +41,7 @@ public class Role extends Entity{
     /**
     * 逻辑删除
     */
-    private Byte deleted;
+    private Boolean deleted;
 
     /**
     * 创建人id

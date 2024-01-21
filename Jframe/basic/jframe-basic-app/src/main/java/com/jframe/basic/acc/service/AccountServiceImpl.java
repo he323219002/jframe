@@ -9,7 +9,6 @@ import com.jframe.basic.org.api.OrganizationService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import javax.validation.constraints.NotNull;
 
 /**
  * <p>
@@ -40,6 +39,7 @@ public class AccountServiceImpl implements AccountService {
         Long tenantId = cmd.getTenantId();
         accountAdminCreateCmdExe.execute(cmd);
     }
+
 
     // 校验租户id
     private void checkTenantId(Long tenantId) {

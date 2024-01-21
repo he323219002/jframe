@@ -55,6 +55,12 @@ public class BusinessAccount extends Entity{
     private String password;
 
     /**
+     * 登录token
+     */
+    private String token;
+
+
+    /**
     * 租户id
     */
     private Long tenantId;
@@ -87,6 +93,6 @@ public class BusinessAccount extends Entity{
     /**
     * 逻辑删除
     */
-    private Byte deleted;
+    private Boolean deleted;
 
 }

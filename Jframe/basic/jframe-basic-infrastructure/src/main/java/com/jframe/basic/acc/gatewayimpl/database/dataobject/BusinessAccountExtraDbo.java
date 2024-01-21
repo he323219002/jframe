@@ -130,6 +130,6 @@ public class BusinessAccountExtraDbo extends Dbo {
     */
     @TableField("deleted")
     @TableLogic
-    private Byte deleted;
+    private Boolean deleted;
 
 }

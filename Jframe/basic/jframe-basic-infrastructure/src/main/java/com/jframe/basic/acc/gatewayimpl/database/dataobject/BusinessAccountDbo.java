@@ -25,6 +25,7 @@ import com.jframe.basic.acc.domain.enumerate.*;
 */
 @EqualsAndHashCode(callSuper = false)
 @TableName("acc_business_account")
+@Data
 public class BusinessAccountDbo extends Dbo {
     @Serial
     private static final long serialVersionUID = 1L;
@@ -111,6 +112,6 @@ public class BusinessAccountDbo extends Dbo {
     */
     @TableField("deleted")
     @TableLogic
-    private Byte deleted;
+    private Boolean deleted;
 
 }

@@ -67,6 +67,6 @@ public class ThirdPartyAccount extends Entity{
     /**
     * 逻辑删除
     */
-    private Byte deleted;
+    private Boolean deleted;
 
 }

@@ -49,15 +49,18 @@ public class TokenAuthenticationFilter extends BaseTokenAuthenticationFilter {
         // 若无，则为匿名访问，交给鉴权管理器
         if (StrUtil.isEmpty(token)) {
             chain.doFilter(request, response);
+            return;
         }
         Claims claim = jwtTokenUtil.getClaimsByToken(token);
         if (Objects.isNull(claim)) {
             log.error("token校验失败");
             ServletUtils.writeJSON(response, CommonResult.error(GlobalResponseEnum.UNAUTHORIZED));
+            return;
         }
         if (jwtTokenUtil.isTokenExpired(claim)){
             log.error("token已过期");
             ServletUtils.writeJSON(response, CommonResult.error(GlobalResponseEnum.UNAUTHORIZED));
+            return;
         }
 
         String username = claim.getSubject();

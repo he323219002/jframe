@@ -70,7 +70,7 @@ public class OrganizationDbo extends Dbo {
      */
     @TableField("deleted")
     @TableLogic
-    private Byte deleted;
+    private Boolean deleted;
 
     /**
      * 创建人id
