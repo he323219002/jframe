@@ -1,6 +1,7 @@
 package com.jframe.basic.acc.api;
 
 
+import com.jframe.basic.acc.dto.cmd.BusinessAccountCreateCmd;
 import com.jframe.basic.acc.dto.cmd.BusinessAccountLoginCmd;
 
 /**
@@ -13,6 +14,12 @@ import com.jframe.basic.acc.dto.cmd.BusinessAccountLoginCmd;
  */
 public interface BusinessAccountService {
 
+
+    /**
+     * 常见
+     * @param cmd
+     */
+    void create(BusinessAccountCreateCmd cmd);
 
     /**
      * 登录

@@ -5,10 +5,12 @@ import com.jframe.basic.acc.convertor.BusinessAccountMapStruct;
 import com.jframe.basic.acc.domain.constant.AccConstant;
 import com.jframe.basic.acc.domain.entity.Account;
 import com.jframe.basic.acc.domain.entity.BusinessAccount;
+import com.jframe.basic.acc.domain.enumerate.BusinessAccountStatusEnum;
 import com.jframe.basic.acc.domain.enumerate.BusinessAccountTypeEnum;
 import com.jframe.basic.acc.domain.exception.AccountException;
 import com.jframe.basic.acc.domain.gateway.AccountGateway;
 import com.jframe.basic.acc.domain.gateway.BusinessAccountGateway;
+import com.jframe.basic.acc.domain.param.BusinessAccountCreateParam;
 import com.jframe.basic.acc.gatewayimpl.database.dataobject.BusinessAccountDbo;
 import com.jframe.basic.acc.gatewayimpl.database.repository.AccountRepository;
 import com.jframe.basic.acc.gatewayimpl.database.repository.BusinessAccountRepository;
@@ -43,5 +45,20 @@ public class BusinessAccountGatewayImpl implements BusinessAccountGateway {
             throw BusinessException.of(AccountException.LOGIN_FAILURE);
         }
         return businessAccountMapStruct.toEntity(businessAccountOpt.get());
+    }
+
+    @Override
+    public void create(BusinessAccount account) {
+        account.setStatus(BusinessAccountStatusEnum.NORMAL);
+        account.setCreateUserId(AccConstant.SYSTEM_ID);
+        account.setUpdateUserId(AccConstant.SYSTEM_ID);
+        businessAccountRepository.create(account);
+    }
+
+    @Override
+    public BusinessAccount getByPhoneAndBizType(String phone, BusinessAccountTypeEnum bizType) {
+        return businessAccountMapStruct.toEntity(
+                businessAccountRepository.getByPhoneAndBizType(phone, bizType)
+        );
     }
 }

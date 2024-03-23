@@ -26,7 +26,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
 
-        // 生成JWT，并放置到请求头中
+        // 生成JWT，并放置到头中
         String jwt = jwtTokenUtil.generateToken(authentication.getName());
         response.setHeader(jwtTokenUtil.generateToken(securityProperties.getHeader()), jwt);
 

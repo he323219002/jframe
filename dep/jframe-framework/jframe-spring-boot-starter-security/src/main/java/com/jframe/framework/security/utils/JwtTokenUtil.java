@@ -39,7 +39,7 @@ public class JwtTokenUtil {
         SecretKey secretKey = generalKey();
 
         return Jwts.builder()
-                .setHeaderParam("typ", "JWT")
+                .setHeaderParam("type", "JWT")
                 .setSubject(username)
                 .setIssuedAt(nowDate)
                 .setExpiration(expireDate)

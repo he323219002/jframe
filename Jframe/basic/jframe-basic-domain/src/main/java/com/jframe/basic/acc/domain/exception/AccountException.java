@@ -10,6 +10,7 @@ import com.jframe.exception.CommonError;
 public enum AccountException implements CommonError {
     TEST("4444111","zxcv"),
     LOGIN_FAILURE("A0001","用户名或密码错误"),
+    BIZ_ACC_PHONE_EXIST("A0002","该手机号已存在"),
     ;
 
     private String code;

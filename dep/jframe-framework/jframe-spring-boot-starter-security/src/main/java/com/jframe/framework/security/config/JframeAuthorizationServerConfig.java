@@ -63,9 +63,10 @@ public class JframeAuthorizationServerConfig {
         return http.build();
     }
 
-    @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)
-            throws Exception {
-        return authenticationConfiguration.getAuthenticationManager();
-    }
+    // 此处会影响jUnit单元测试
+//    @Bean
+//    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)
+//            throws Exception {
+//        return authenticationConfiguration.getAuthenticationManager();
+//    }
 }

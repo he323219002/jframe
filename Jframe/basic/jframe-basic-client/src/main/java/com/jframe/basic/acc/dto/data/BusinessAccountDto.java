@@ -53,39 +53,5 @@ public class BusinessAccountDto extends Dto {
     */
     private String password;
 
-    /**
-    * 租户id
-    */
-    private Long tenantId;
-
-    /**
-    * 创建人id
-    */
-    private Long createUserId;
-
-    /**
-    * 创建时间
-    */
-    private LocalDateTime createTime;
-
-    /**
-    * 更新人id
-    */
-    private Long updateUserId;
-
-    /**
-    * 更新时间
-    */
-    private LocalDateTime updateTime;
-
-    /**
-    * 版本号
-    */
-    private Integer version;
-
-    /**
-    * 逻辑删除
-    */
-    private Boolean deleted;
 
 }

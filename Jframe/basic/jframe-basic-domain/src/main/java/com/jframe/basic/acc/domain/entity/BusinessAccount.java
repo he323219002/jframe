@@ -2,8 +2,10 @@ package com.jframe.basic.acc.domain.entity;
 import com.jframe.base.Entity;
 import java.time.LocalDateTime;
 
+import lombok.Data;
 import lombok.EqualsAndHashCode;
 import com.jframe.basic.acc.domain.enumerate.*;
+import lombok.Getter;
 
 
 /**
@@ -14,6 +16,7 @@ import com.jframe.basic.acc.domain.enumerate.*;
 
 
 @EqualsAndHashCode(callSuper = false)
+@Data
 public class BusinessAccount extends Entity{
 
 

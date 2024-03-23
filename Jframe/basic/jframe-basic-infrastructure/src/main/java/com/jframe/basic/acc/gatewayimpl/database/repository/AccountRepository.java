@@ -22,13 +22,22 @@ public class AccountRepository extends ServiceImpl<AccountMapper, AccountDbo> {
     @Resource
     private AccountMapStruct accountMapStruct;
 
-    public void createAdminAccount(Account account) {
-        this.save(accountMapStruct.toDbo(account));
+    public void createAccount(Account account) {
+        AccountDbo dbo = accountMapStruct.toDbo(account);
+        this.save(dbo);
+        account.setId(dbo.getId());
     }
 
     public AccountDbo testGet(Long id) {
         return this.lambdaQuery()
                 .eq(AccountDbo::getId, id)
+                .one();
+    }
+
+
+    public AccountDbo getByPhone(String phone){
+        return this.lambdaQuery()
+                .eq(AccountDbo::getPhone,phone)
                 .one();
     }
 

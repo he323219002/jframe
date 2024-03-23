@@ -3,6 +3,7 @@ package com.jframe.basic.acc.convertor;
 import com.jframe.basic.acc.convertor.custom.EnumerateConvertor;
 import com.jframe.basic.acc.dto.AccountTestQry;
 import com.jframe.basic.acc.dto.cmd.AccountAdminCreateCmd;
+import com.jframe.basic.acc.dto.cmd.BusinessAccountCreateCmd;
 import com.jframe.basic.acc.dto.data.AccountDto;
 import com.jframe.basic.acc.domain.entity.Account;
 import com.jframe.basic.acc.gatewayimpl.database.dataobject.AccountDbo;
