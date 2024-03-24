@@ -2,6 +2,7 @@ package com.jframe.framework.security.core.handler;
 
 import com.jframe.framework.security.config.SecurityProperties;
 import com.jframe.framework.security.utils.JwtTokenUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
@@ -16,6 +17,7 @@ import java.io.IOException;
  * @Date: 2023/10/22 11:14
  * @Description: 登录成功处理
  */
+@Slf4j
 public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 
     @Resource
@@ -25,7 +27,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-
+        log.info("onAuthenticationSuccess >>>>>>>>>>>>>>>>>");
         // 生成JWT，并放置到头中
         String jwt = jwtTokenUtil.generateToken(authentication.getName());
         response.setHeader(jwtTokenUtil.generateToken(securityProperties.getHeader()), jwt);

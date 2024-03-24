@@ -12,6 +12,7 @@ import com.jframe.basic.acc.dto.cmd.BusinessAccountCreateCmd;
 import com.jframe.basic.acc.dto.cmd.BusinessAccountLoginCmd;
 import com.jframe.basic.acc.api.BusinessAccountService;
 import com.jframe.exception.BusinessException;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -37,11 +38,15 @@ public class BusinessAccountServiceImpl implements BusinessAccountService {
     private AccountGateway accountGateway;
     @Resource
     private BusinessAccountMapStruct businessAccountMapStruct;
+    @Resource
+    private RedisTemplate<String,Object> redisTemplate;
+
 
     @Override
     public void login(BusinessAccountLoginCmd cmd) {
         BusinessAccount businessAccount = businessAccountLoginCmdExe.execute(cmd);
         // todo 组装用户信息进缓存
+
     }
 
     @Override

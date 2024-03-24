@@ -14,6 +14,7 @@
         <module>jframe-spring-boot-starter-web</module>
         <module>jframe-spring-boot-starter-security</module>
         <module>jframe-spring-boot-starter-orm</module>
+        <module>jframe-spring-boot-starter-redis</module>
     </modules>
 
     <properties>

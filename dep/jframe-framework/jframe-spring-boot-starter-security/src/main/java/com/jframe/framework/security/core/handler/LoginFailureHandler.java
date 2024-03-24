@@ -3,6 +3,7 @@ package com.jframe.framework.security.core.handler;
 import com.jframe.base.CommonResult;
 import com.jframe.constants.GlobalResponseEnum;
 import com.jframe.utils.ServletUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 
@@ -16,9 +17,11 @@ import java.io.IOException;
  * @Date: 2023/10/22 19:57
  * @Description: TODO 描述
  */
+@Slf4j
 public class LoginFailureHandler implements AuthenticationFailureHandler {
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
+        log.info("onAuthenticationFailure >>>>>>>>>>>>>>>>>>");
         // 返回 401
         ServletUtils.writeJSON(response, CommonResult.error(GlobalResponseEnum.UNAUTHORIZED));
     }

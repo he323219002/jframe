@@ -1,5 +1,7 @@
 package com.jframe.framework.security.config;
 
+import com.jframe.framework.security.core.handler.LoginFailureHandler;
+import com.jframe.framework.security.core.handler.LoginSuccessHandler;
 import com.jframe.framework.security.spi.BaseTokenAuthenticationFilter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
@@ -37,6 +39,10 @@ public class JframeAuthorizationServerConfig {
     private AccessDeniedHandler accessDeniedHandler;
     @Resource
     private BaseTokenAuthenticationFilter jwtTokenAuthService;
+    @Resource
+    private LoginSuccessHandler loginSuccessHandler;
+    @Resource
+    private LoginFailureHandler loginFailureHandler;
 
 
     @Bean
@@ -51,8 +57,11 @@ public class JframeAuthorizationServerConfig {
                 .exceptionHandling().authenticationEntryPoint(authenticationEntryPoint)
                 .accessDeniedHandler(accessDeniedHandler)
                 .and()
+                .formLogin().successHandler(loginSuccessHandler)
+                .failureHandler(loginFailureHandler)
+                .and()
                 .authorizeRequests()
-                .antMatchers("/acc/**", "/actuator/**").permitAll()
+                .antMatchers("/acc/biz_account/login", "/actuator/**").permitAll()
 //                .antMatchers("/acc/**","/acc/user/test").permitAll()
                 .anyRequest().authenticated();
 

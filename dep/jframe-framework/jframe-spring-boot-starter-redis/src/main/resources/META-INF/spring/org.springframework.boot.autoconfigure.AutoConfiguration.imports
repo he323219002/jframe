@@ -1,0 +1,2 @@
+com.jframe.framework.redis.config.JframeCacheAutoConfiguration
+com.jframe.framework.redis.config.JframeRedisAutoConfiguration

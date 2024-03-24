@@ -22,10 +22,12 @@
             <artifactId>jframe-spring-boot-starter-orm</artifactId>
             <groupId>com.jframe.framework</groupId>
         </dependency>
-
-
         <dependency>
             <artifactId>jframe-spring-boot-starter-web</artifactId>
+            <groupId>com.jframe.framework</groupId>
+        </dependency>
+        <dependency>
+            <artifactId>jframe-spring-boot-starter-redis</artifactId>
             <groupId>com.jframe.framework</groupId>
         </dependency>
     </dependencies>

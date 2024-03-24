@@ -119,6 +119,11 @@
                 <version>${reversion}</version>
             </dependency>
 
+            <dependency>
+                <artifactId>jframe-spring-boot-starter-redis</artifactId>
+                <groupId>com.jframe.framework</groupId>
+                <version>${reversion}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

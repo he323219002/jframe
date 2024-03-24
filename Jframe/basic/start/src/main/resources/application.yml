@@ -6,6 +6,17 @@ spring:
     url: jdbc:mysql://192.168.195.150:3306/jframe
     username: root
     password: home
+  redis:
+    database: 0
+    host: 192.168.195.150
+    port: 6379
+    # password :
+    timeout: 5s
+    connect-timeout: 5s
+  cache:
+    type: REDIS
+    redis:
+      time-to-live: 1h # 设置过期时间为 1 小时
 management:
   endpoints:
     web:

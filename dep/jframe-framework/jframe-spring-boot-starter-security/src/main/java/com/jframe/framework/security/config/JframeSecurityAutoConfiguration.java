@@ -2,6 +2,8 @@ package com.jframe.framework.security.config;
 
 import com.jframe.framework.security.core.handler.AccessDeniedHandlerImpl;
 import com.jframe.framework.security.core.handler.AuthenticationEntryPointHandler;
+import com.jframe.framework.security.core.handler.LoginFailureHandler;
+import com.jframe.framework.security.core.handler.LoginSuccessHandler;
 import com.jframe.framework.security.utils.JwtTokenUtil;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -10,6 +12,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.access.AccessDeniedHandler;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 import javax.annotation.Resource;
 
@@ -53,7 +57,18 @@ public class JframeSecurityAutoConfiguration {
 
 
     @Bean
-    public JwtTokenUtil jwtTokenUtil(){
+    public AuthenticationSuccessHandler authenticationSuccessHandler() {
+        return new LoginSuccessHandler();
+    }
+
+    @Bean
+    public AuthenticationFailureHandler authenticationFailureHandler() {
+        return new LoginFailureHandler();
+    }
+
+
+    @Bean
+    public JwtTokenUtil jwtTokenUtil() {
         return new JwtTokenUtil();
     }
 
